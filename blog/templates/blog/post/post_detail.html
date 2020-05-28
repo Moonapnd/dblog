@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% load static %}
+
+{% block content %}
+
+
+<div>
+
+    {% tags_list %}
+    
+    <!-- Display post.title and post.publisher.username -->
+    <h2>{{ post.title }} by {{ post.publisher.username }}</h2>
+
+    <br />
+        <div> {{ post.description|markdown }} </div>
+    <br />
+
+    <!-- Display post.image.name and Image uploaded by user -->
+    <div class='text-center'>
+        {% if post.image.name %}
+            <img src="{{ post.image.url }}" class="img-fluid rounded" alt="image"> 
+        {% else %}
+            <!-- <img src="{% static 'img/no-image-available.png' %}" class="card-img-top" alt="image"> -->
+        {% endif %}
+    </div>
+
+    <!-- if the User is authenticated and he own the post we allow him to Edit or Delete post-->
+    <br />
+    {% if is_post_owner %}
+    <div>
+        <p> <a href="{% url 'blog:post_update' post.id %}" class="btn btn-info"> Update </a> </p>
+        <p> <a href="{% url 'blog:post_delete' post.id %}" class="btn btn-danger"> Delete </a> </p>
+    </div>
+    {% endif %}
+
+    {% comment %}
+        <div>
+            <form action="{% url 'blog:post_details' post.id %}" method="post" novalidate>
+                {{ comment_form.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value="Add Comment"></p>
+            </form>
+        </div>
+
+
+       <hr />
+       <div class='comment-list'>
+            {% if comments %}
+                <h2>Comments</h2>
+                <ul>
+                    {% for comment in comments %}
+                        <li class='comment-item'>
+                            <b> {{ comment.body }} </b> - Last update in {{ comment.updated }}
+                        </li>
+                    {% endfor%}
+                </ul>
+           {% else %}
+                <p>No comment found</p>
+           {% endif%}
+        </div>
+    {% endcomment %}
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+
+<!-- Display all tags -->
+{% if tags_list %}
+    <p>Categories : 
+        {% for tag in tags_list %}
+            <a href="{% url 'blog:post_list' tag.id %}" class="btn btn-outline-secondary btn-sm my-2">{{ tag.name }}</a>
+        {% endfor %}
+    </p>
+{% endif %}
+
+

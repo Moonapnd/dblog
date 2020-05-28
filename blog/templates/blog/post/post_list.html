@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% load static %}
+
+
+{% block content %}
+
+<br />
+
+<!-- custum tag that display all tags -->
+<div> 
+    {% tags_list %} 
+</div>
+
+
+
+{% for post in post_list %}
+    <div class="card bg-light mb-3" style="max-width: 100%;">
+        <div class="card-header">{{ post.title }}</div>
+        <div class="card-body">
+            <h4 class="card-title">Created By 
+                <a href="{% url 'blog:post_list' username=post.publisher.username %}"> {{ post.publisher.username }} </a> 
+            </h4>
+            <p class="card-text"> {{ post.description|markdown|truncatewords_html:30 }} </p>
+            <a href="{{ post.get_absolute_url }}">Detail</a>
+        </div>
+    </div>
+{% endfor %}
+
+
+<div>
+    <!-- display pagination only if page_obj -->
+    {% if page_obj %}
+        {% include "blog/post/pagination.html" with page=page_obj %}
+    {% endif %}
+</div>
+
+
+<!-- custum tag that display most liked posts -->
+<div> 
+    {% most_liked_posts %} 
+</div>
+
+
+{% endblock %}
