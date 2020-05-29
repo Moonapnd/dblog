@@ -10,7 +10,7 @@ Application for user authentication
 
 **accounts.urls.py**\
 
-`
+```
     # initial url show the dashboard\
     path('', views.dashboard, name='dashboard'),\
     # login urls \
@@ -29,14 +29,14 @@ Application for user authentication
     path('register/', views.register, name='register'),\
     # edit Profile\
     path('edit/', views.edit, name='edit'),\
-`
+```
 
 # 2- blog:
 Blog application that allow users to crud a post (comments are not added yet)
 
 **blog.urls.py**\
 
-`
+```
     path('', views.index, name='blog_index'),\
 
     # posts urls for crud operations\
@@ -47,5 +47,5 @@ Blog application that allow users to crud a post (comments are not added yet)
     path('post/<int:pk>/detail/', views.PostDetail.as_view(), name='post_detail'),\
     path('post/<int:pk>/update/', views.PostUpdate.as_view(), name='post_update'),\
     path('post/<int:pk>/delete/', views.PostDelete.as_view(), name='post_delete'),\
-`
+```
 
