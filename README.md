@@ -2,13 +2,13 @@
 
 # This project contain 2 application :
 
-# 1- accounts
-# 2- blog
+**1- accounts**
+**2- blog**
  
 # 1- accounts:
 Application for user authentication
 
-**accounts.urls.py**
+**accounts.urls.py**\
 `
     # initial url show the dashboard\
     path('', views.dashboard, name='dashboard'),\
@@ -34,7 +34,7 @@ Application for user authentication
 # 2- blog:
 Blog application that allow users to crud a post (comments are not added yet)
 
-**blog.urls.py**
+**blog.urls.py**\
 `
     path('', views.index, name='blog_index'),\
 
