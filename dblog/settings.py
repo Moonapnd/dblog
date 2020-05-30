@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'taggit',
     'bootstrap_pagination',
     'crispy_forms',
+    # postgresql
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
